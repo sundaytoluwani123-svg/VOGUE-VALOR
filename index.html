@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogue & Valor | Premium Apparel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html {
+    scroll-behavior: smooth;
+}
+
+        :root {
+            --primary-gold: #c5a059;
+            --dark-charcoal: #1a1a1a;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar-brand { font-weight: 800; letter-spacing: 2px; color: var(--primary-gold) !important; }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+        .product-card { transition: transform 0.3s; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .product-card:hover { transform: translateY(-10px); }
+        .btn-gold { background-color: var(--primary-gold); color: white; border: none; }
+        .btn-gold:hover { background-color: #b38f4d; color: white; }
+        #cart-count { font-size: 0.7rem; vertical-align: top; }
+        .whatsapp-float {
+            
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+        .whatsapp-float:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+    </style>
+</head>
+<body>
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">VOGUE & VALOR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="#" onclick="toggleCart()">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-2 fw-bold">Define Your Style</h1>
+            <p class="lead">Exquisite clothing and accessories curated for the modern individual.</p>
+            <a href="#shop" class="btn btn-gold btn-lg px-5">Shop Now</a>
+        </div>
+    </header>
+
+    <section id="shop" class="py-5 container">
+        <h2 class="text-center mb-5">New Arrivals</h2>
+        <div class="row g-4" id="product-grid">
+            </div>
+    </section>
+
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Get In Touch</h3>
+                    <p>Have a question about an order or a specific piece? We're here to help.</p>
+                    <p><i class="fas fa-envelope me-2"></i> sundaytoluwani123@gmail.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +234 708 895 0288</p>
+                </div>
+                <div class="col-md-6">
+                    <form id="contact-form">
+                        <input type="text" class="form-control mb-3" placeholder="Your Name" required>
+                        <input type="email" class="form-control mb-3" placeholder="Your Email" required>
+                        <textarea class="form-control mb-3" rows="4" placeholder="Message"></textarea>
+                        <button type="submit" class="btn btn-dark w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4 text-center">
+        <p>&copy; 2026 Vogue & Valor. All Rights Reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/2347088950288" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp" style="margin-top:16px;"></i>
+    </a>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        // Product Data (The "Database")
+        const products = [
+            { id: 1, name: "Midnight Silk Dress", price: 120, img: "https://images.unsplash.com/photo-1539008835657-9e8e81839217?auto=format&fit=crop&w=400&q=80" },
+            { id: 2, name: "Gold Minimalist Watch", price: 85, img: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=400&q=80" },
+            { id: 3, name: "Heritage Leather Jacket", price: 250, img: "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?auto=format&fit=crop&w=400&q=80" },
+            { id: 4, name: "Classic Aviators", price: 45, img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        let cartCount = 0;
+
+        // Render Products
+        const grid = document.getElementById('product-grid');
+        products.forEach(p => {
+            grid.innerHTML += `
+                <div class="col-md-3">
+                    <div class="card product-card">
+                        <img src="${p.img}" class="card-img-top" alt="${p.name}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${p.name}</h5>
+                            <p class="card-text fw-bold">$${p.price.toLocaleString()}</p>
+
+                            <button onclick="addToCart('${p.name}')" class="btn btn-dark btn-sm">Add to Cart</button>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            `;
+            let cartCount = localStorage.getItem("cartCount") 
+    ? parseInt(localStorage.getItem("cartCount")) 
+    : 0;
+
+document.getElementById('cart-count').innerText = cartCount;
+
+function addToCart(productName) {
+    cartCount++;
+    localStorage.setItem("cartCount", cartCount);
+    document.getElementById('cart-count').innerText = cartCount;
+}
+
+        });
+
+        function addToCart(productName) {
+    cartCount++;
+    document.getElementById('cart-count').innerText = cartCount;
+
+    // Better notification (no alert)
+    const toast = document.createElement("div");
+    toast.className = "position-fixed bottom-0 start-50 translate-middle-x bg-dark text-white p-3 rounded";
+    toast.style.zIndex = "9999";
+    toast.innerText = productName + " added to cart!";
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 2000);
+}
+
+    </script>
+</body>
+</html>
